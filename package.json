@@ -1,0 +1,26 @@
+{
+  "name": "agentia-ping-handler",
+  "version": "0.0.0",
+  "description": "Express Middleware to handle HTTP pings",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha ./test -R spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JohnnyEstilles/keystone-social-login.git"
+  },
+  "keywords": [
+    "express",
+    "middleware",
+    "ping",
+    "http",
+    "handler"
+  ],
+  "author": "Johnny Estilles <johnny.estilles@agentia.asia>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JohnnyEstilles/keystone-social-login/issues"
+  },
+  "homepage": "https://github.com/JohnnyEstilles/keystone-social-login"
+}
