@@ -1,5 +1,5 @@
 # Agentia Ping Handler
-[![Build Status](https://travis-ci.org/AgentiaSystems/agentia-ping-handler.svg)](https://travis-ci.org/AgentiaSystems/agentia-ping-handler)
+[![Build Status](https://travis-ci.org/AgentiaSystems/agentia-ping-handler.svg)](https://travis-ci.org/AgentiaSystems/agentia-ping-handler) [![Coverage Status](https://coveralls.io/repos/AgentiaSystems/agentia-ping-handler/badge.svg?branch=)](https://coveralls.io/r/AgentiaSystems/agentia-ping-handler?branch=)
 
 Express middleware to handle HTTP ping requests (GET and HEAD).
 
