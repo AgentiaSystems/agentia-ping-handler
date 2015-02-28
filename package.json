@@ -1,10 +1,10 @@
 {
   "name": "agentia-ping-handler",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Express Middleware to handle HTTP pings",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha ./__tests__ -R spec"
+    "test": "./node_modules/.bin/mocha ./test -R spec"
   },
   "repository": {
     "type": "git",
