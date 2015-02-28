@@ -1,4 +1,5 @@
 # Agentia Ping Handler
+[![Build Status](https://travis-ci.org/AgentiaSystems/agentia-ping-handler.svg)](https://travis-ci.org/AgentiaSystems/agentia-ping-handler)
 
 Express middleware to handle HTTP ping requests (GET and HEAD).
 
