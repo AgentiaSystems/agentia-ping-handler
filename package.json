@@ -4,11 +4,11 @@
   "description": "Express Middleware to handle HTTP pings",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha ./test -R spec"
+    "test": "./node_modules/.bin/mocha ./__tests__ -R spec"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/JohnnyEstilles/keystone-social-login.git"
+    "url": "https://github.com/JohnnyEstilles/agentia-ping-handler.git"
   },
   "keywords": [
     "express",
@@ -20,7 +20,24 @@
   "author": "Johnny Estilles <johnny.estilles@agentia.asia>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/JohnnyEstilles/keystone-social-login/issues"
+    "url": "https://github.com/JohnnyEstilles/agentia-ping-handler/issues"
   },
-  "homepage": "https://github.com/JohnnyEstilles/keystone-social-login"
+  "homepage": "https://github.com/JohnnyEstilles/agentia-ping-handler",
+  "devDependencies": {
+    "chai": "^2.0.0",
+    "coveralls": "^2.11.2",
+    "gulp": "^3.8.10",
+    "gulp-coverage": "^0.3.32",
+    "gulp-jscs": "^1.4.0",
+    "gulp-mocha": "^2.0.0",
+    "istanbul": "^0.3.6",
+    "jscs": "^1.11.3",
+    "mocha": "^2.1.0",
+    "node-mocks-http": "JohnnyEstilles/node-mocks-http",
+    "sinon": "^1.12.2",
+    "sinon-chai": "^2.6.0"
+  },
+  "dependencies": {
+    "lodash": "^3.3.1"
+  }
 }
