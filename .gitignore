@@ -15,6 +15,7 @@ lib-cov
 .coverdata
 .coverdebug
 .coverrun
+coverage
 coverage.html
 
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
