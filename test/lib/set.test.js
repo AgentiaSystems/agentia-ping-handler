@@ -3,7 +3,7 @@ var _ = require('lodash'),
 	expect = chai.expect,
 	sinon = require('sinon'),
 	sinonChai = require('sinon-chai'),
-	ping = require('../../lib/pingHandler')();
+	ping = require('../../')();
 
 chai.use(sinonChai);
 

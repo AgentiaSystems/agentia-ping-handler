@@ -4,7 +4,7 @@ var _ = require('lodash'),
 	sinon = require('sinon'),
 	sinonChai = require('sinon-chai'),
 	httpMocks = require('node-mocks-http'),
-	ping = require('../../lib/pingHandler')(),
+	ping = require('../../')(),
 	middleware = ping.middleware(),
 	req, res, next;
 
@@ -33,7 +33,7 @@ describe('.middleware()', function () {
 
 			middleware(req, res, next);
 			expect(res._getStatusCode()).to.equal(200);
-			expect(res._getData()).to.equal(ping.get('payload'));
+			expect(res._getData()).to.equal('OK');
 			expect(res._isEndCalled()).to.be.false;
 		});
 
