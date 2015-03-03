@@ -4,7 +4,7 @@
   "description": "Express Middleware to handle HTTP pings",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha ./test -R spec"
+    "test": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec"
   },
   "repository": {
     "type": "git",
