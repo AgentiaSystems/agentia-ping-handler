@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/JohnnyEstilles/agentia-ping-handler",
   "devDependencies": {
-    "chai": "^2.0.0",
+    "chai": "^2.1.2",
     "coveralls": "^2.11.2",
     "del": "^1.1.1",
     "gulp": "^3.8.10",
@@ -38,7 +38,6 @@
     "sinon-chai": "^2.6.0"
   },
   "dependencies": {
-    "chai": "^2.1.2",
     "lodash": "^3.5.0"
   }
 }
