@@ -24,20 +24,20 @@
   },
   "homepage": "https://github.com/JohnnyEstilles/agentia-ping-handler",
   "devDependencies": {
-    "chai": "^2.0.0",
+    "chai": "^2.1.2",
     "coveralls": "^2.11.2",
     "del": "^1.1.1",
     "gulp": "^3.8.10",
     "gulp-coverage": "^0.3.32",
     "gulp-eslint": "^0.7.0",
     "gulp-mocha": "^2.0.0",
-    "istanbul": "^0.3.6",
-    "mocha": "^2.1.0",
-    "node-mocks-http": "JohnnyEstilles/node-mocks-http",
-    "sinon": "^1.12.2",
+    "istanbul": "^0.3.8",
+    "mocha": "^2.2.1",
+    "node-mocks-http": "^1.2.5",
+    "sinon": "^1.14.1",
     "sinon-chai": "^2.6.0"
   },
   "dependencies": {
-    "lodash": "^3.3.1"
+    "lodash": "^3.5.0"
   }
 }
