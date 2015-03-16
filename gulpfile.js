@@ -3,8 +3,9 @@
 var gulp = require('gulp'),
 	eslint = require('gulp-eslint'),
 	mocha = require('gulp-mocha'),
-	coverage = require('gulp-coverage');
-
+	coverage = require('gulp-coverage'),
+	del = require('del');
+ 
 var paths = {
 	'all': [
 		'./gulpfile.js',
@@ -17,6 +18,16 @@ var paths = {
 	],
 	'tests': [ './test/**/*.test.js' ]
 };
+
+gulp.task('clean', function (cb) {
+  del([
+    '.coverage',
+    '.coverdata',
+    'coverage',
+    '.coverrun',
+    'coverage.html'
+  ], cb);
+});
 
 gulp.task('lint', function () {
 	return gulp.src(paths.all)
