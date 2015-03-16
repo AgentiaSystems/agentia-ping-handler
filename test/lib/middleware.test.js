@@ -1,11 +1,10 @@
-var _ = require('lodash'),
-	chai = require('chai'),
+var chai = require('chai'),
 	expect = chai.expect,
 	sinon = require('sinon'),
 	sinonChai = require('sinon-chai'),
 	httpMocks = require('node-mocks-http'),
-	ping = require('../../')(),
-	middleware = ping.middleware(),
+	pingHandler = require('../../'),
+	middleware = pingHandler.middleware(),
 	req, res, next;
 
 chai.use(sinonChai);
@@ -35,6 +34,7 @@ describe('.middleware()', function () {
 			expect(res._getStatusCode()).to.equal(200);
 			expect(res._getData()).to.equal('OK');
 			expect(res._isEndCalled()).to.be.false;
+			expect(next).not.to.have.been.called;
 		});
 
 		it('should return 200/OK when HEAD /ping', function() {
@@ -47,6 +47,7 @@ describe('.middleware()', function () {
 			expect(res._getStatusCode()).to.equal(200);
 			expect(res._getData()).to.equal('');
 			expect(res._isEndCalled()).to.be.true;
+			expect(next).not.to.have.been.called;
 		});
 
 		it('should call next() when POST /ping', function() {
@@ -95,7 +96,7 @@ describe('.middleware()', function () {
 				url: path
 			});
 
-			ping.config({
+			pingHandler.config({
 				path: path,
 				payload: payload
 			});
@@ -106,6 +107,7 @@ describe('.middleware()', function () {
 			expect(res._getStatusCode()).to.equal(200);
 			expect(res._isJSON()).to.be.true;
 			expect(res._isEndCalled()).to.be.false;
+			expect(next).not.to.have.been.called;
 
 		});
 

@@ -1,2 +1,5 @@
 --recursive
 --require chai
+--require sinon
+--require sinon-chai
+--require node-mocks-http
