@@ -1,1 +1,1 @@
-module.exports = require('./lib/pingHandler');
+module.exports = require('./lib/pingHandler')();
