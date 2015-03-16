@@ -38,6 +38,7 @@
     "sinon-chai": "^2.6.0"
   },
   "dependencies": {
+    "chai": "^2.1.2",
     "lodash": "^3.5.0"
   }
 }
