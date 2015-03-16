@@ -1,18 +1,28 @@
+'use strict';
+
 var gulp = require('gulp'),
-	jscs = require('gulp-jscs'),
+	eslint = require('gulp-eslint'),
 	mocha = require('gulp-mocha'),
 	coverage = require('gulp-coverage');
 
 var paths = {
-	'src':['./index.js', './lib/**/*.js'],
-	'tests':['./test/**/*.test.js']
+	'all': [
+		'./gulpfile.js',
+		'./index.js',
+		'./lib/**/*.js'
+	],
+	'src': [
+		'./index.js',
+		'./lib/**/*.js'
+	],
+	'tests': [ './test/**/*.test.js' ]
 };
 
-// lint task
-gulp.task('jscs', function(){
-	gulp
-		.src(paths.src)
-		.pipe(jscs());
+gulp.task('lint', function () {
+	return gulp.src(paths.all)
+		.pipe(eslint())
+		.pipe(eslint.format())
+		.pipe(eslint.failOnError());
 });
 
 // gulp for running the mocha tests with default dot reporter
@@ -34,4 +44,4 @@ gulp.task('spec', function(){
 		.pipe(coverage.report({outFile: 'coverage.html'}));
 });
 
-gulp.task('default', ['jscs', 'spec']);
+gulp.task('default', ['lint', 'spec']);
