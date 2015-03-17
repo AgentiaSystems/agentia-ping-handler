@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/JohnnyEstilles/agentia-ping-handler.git"
+    "url": "https://github.com/AgentiaSystems/agentia-ping-handler.git"
   },
   "keywords": [
     "express",
@@ -20,9 +20,9 @@
   "author": "Johnny Estilles <johnny.estilles@agentia.asia>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/JohnnyEstilles/agentia-ping-handler/issues"
+    "url": "https://github.com/AgentiaSystems/agentia-ping-handler/issues"
   },
-  "homepage": "https://github.com/JohnnyEstilles/agentia-ping-handler",
+  "homepage": "https://github.com/AgentiaSystems/agentia-ping-handler",
   "devDependencies": {
     "chai": "^2.1.2",
     "coveralls": "^2.11.2",
