@@ -3,12 +3,14 @@
 
 Express middleware to handle HTTP ping requests (GET and HEAD).
 
-**agentia-ping-handler** intercepts `HEAD` and `GET` requests to the `/ping` route and immediately replies with a `200` status code, preventing other Express middlewares from loading.
+**agentia-ping-handler** intercepts `HEAD` and `GET` requests to `/ping` and immediately replies with a `200` status code, preventing other Express middlewares from loading.
 
 This is useful to prevent `session` and other unnecessary middleware to load when your site/app pinged by an external monitoring service.
 
 ## Installation
-agentia-ping-handler is available on [npm](http://npmjs.com/package/agentia-ping-handler).
+[![NPM version](https://badge.fury.io/js/agentia-ping-handler.png)](https://www.npmjs.com/package/agentia-ping-handler)
+
+**agentia-ping-handler** is available on [npm](http://npmjs.com/package/agentia-ping-handler).
 
 ```js
 npm install --save agentia-ping-handler
@@ -48,55 +50,40 @@ keystone.app.use(pingHandler({ path: '/path/to/ping' }).middleware);
 ## Configuration Options
 By default, agentia-ping-handler intercepts `HEAD` and `GET` requests to `/ping`. However, agentia-ping-handler offers allows you to set customize any of these defaults. The options can be configured using any of the following methods:
 
-* passing a configuration object to the constructor
 * using the `.config()` method 
 * using the `.set()` method
 
-**Passing a configuration object**
+## API
 
+### Using .set()
 ```js
-var pingHandler = require('agentia-ping-handler');
-var app = express();
-
-app.use.use(pingHandler({
-	'option': 'value'
-}).middleware);
-```
-
-**Using .config()**
-
-```js
-var pingHandler = require('agentia-ping-handler');
-var app = express();
-
-pingHandler.config({
-	'option': 'value'
-});
-
-app.use.use(pingHandler.middleware);
-```
-
-**Using .set()**
-
-```js
-var pingHandler = require('agentia-ping-handler');
-var app = express();
-
 pingHandler.set('option', 'value');
-
-app.use(pingHandler.middleware);
 ```
 
-The available configuration options include:
+Allows you to configure individual options settings. Available configuration options include:
 
 Option | Type | Description | Default Value
 --- | --- | --- | ---
-methods | String<br>Array | HTTP methods to be intercepted | `['GET', 'HEAD']`
-path | String | path/route to be intercepted | `'/ping'`
+methods | String<br>Array | HTTP methods to be processed (currently only `GET` and `HEAD` are supported) | `['GET', 'HEAD']`
+path | String | path/route to be processed | `'/ping'`
 payload | String<br>Object | data sent in response to GET requests | `'OK'`
 
-## API
-TODO
+### .config()
+Allows you to set multiple configuration options in a single call. Set `.set()` above for a list of the available configuration options.
+
+```js
+pingHandler.config({
+  'option1': 'value1'
+  'option2': 'value2'
+});
+```
+
+### .middleware
+Returns the middleware to be passed to Express using `.use()`.
+
+```js
+app.use(pingHandler.middleware);
+```
 
 ## Technologies
 Technologies used in the development of **agentia-ping-handler**.
@@ -108,13 +95,14 @@ Technologies used in the development of **agentia-ping-handler**.
 * [Sinon.js](http://sinonjs.org/)
 * [istanbul](https://gotwarlost.github.io/istanbul/)
 * [coveralls](https://coveralls.io)
-* [JSCS](http://jscs.info)
+* [ESLint](http://eslint.org)
 
 
 ## License
 Agentia Ping Handler is free and open source under the MIT License.
 
-Copyright (c) 2015, Johnny Estilles ([@JohnnyEstilles](http://twitter.com/JohnnyEstilles))
+Copyright (c) 2015 [Johnny Estilles](https://github.com/JohnnyEstilles), http://www.agentia.asia
+
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
