@@ -18,7 +18,7 @@ npm install --save agentia-ping-handler
 
 ## Usage
 ```js
-pingHandler({options}).middleware
+pingHandler({options}).middleware()
 ```
 
 ### Express
@@ -29,7 +29,7 @@ var pingHandler = require('agentia-ping-handler');
 
 var app = express();
 
-app.use(pingHandler({ path: '/path/to/ping' }).middleware);
+app.use(pingHandler.middleware());
 ```
 
 ### KeystoneJS
@@ -44,7 +44,7 @@ keystone.init({
 	...
 });
 
-keystone.app.use(pingHandler({ path: '/path/to/ping' }).middleware);
+keystone.app.use(pingHandler.middleware());
 ```
 
 ## Configuration Options
@@ -78,11 +78,11 @@ pingHandler.config({
 });
 ```
 
-### .middleware
+### .middleware()
 Returns the middleware to be passed to Express using `.use()`.
 
 ```js
-app.use(pingHandler.middleware);
+app.use(pingHandler.middleware());
 ```
 
 ## Technologies
@@ -101,7 +101,7 @@ Technologies used in the development of **agentia-ping-handler**.
 ## License
 Agentia Ping Handler is free and open source under the MIT License.
 
-Copyright (c) 2015 [Johnny Estilles](https://github.com/JohnnyEstilles), http://www.agentia.asia
+Copyright (c) 2015 [Johnny Estilles](https://github.com/JohnnyEstilles), [http://www.agentia.asia](http://www.agentia.asia)
 
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:

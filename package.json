@@ -1,6 +1,6 @@
 {
   "name": "agentia-ping-handler",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Express Middleware to handle HTTP pings",
   "main": "index.js",
   "scripts": {
@@ -37,7 +37,5 @@
     "sinon": "^1.14.1",
     "sinon-chai": "^2.6.0"
   },
-  "dependencies": {
-    "lodash": "^3.5.0"
-  }
+  "dependencies": {}
 }
