@@ -5,7 +5,7 @@ var gulp = require('gulp'),
 	mocha = require('gulp-mocha'),
 	coverage = require('gulp-coverage'),
 	del = require('del');
- 
+
 var paths = {
 	'all': [
 		'./gulpfile.js',
