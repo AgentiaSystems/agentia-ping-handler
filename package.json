@@ -31,7 +31,7 @@
     "gulp-coverage": "^0.3.32",
     "gulp-eslint": "^0.7.0",
     "gulp-mocha": "^2.0.0",
-    "istanbul": "^0.3.8",
+    "istanbul": "^0.3.11",
     "mocha": "^2.2.1",
     "node-mocks-http": "^1.2.5",
     "sinon": "^1.14.1",
