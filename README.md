@@ -1,4 +1,5 @@
-# agentia-ping-handler
+![agentia-ping-handler logo](media/logo.png)
+---
 [![Build Status](https://travis-ci.org/AgentiaSystems/agentia-ping-handler.svg?branch=master)](https://travis-ci.org/AgentiaSystems/agentia-ping-handler) [![Coverage Status](https://coveralls.io/repos/AgentiaSystems/agentia-ping-handler/badge.svg?branch=master)](https://coveralls.io/r/AgentiaSystems/agentia-ping-handler?branch=master) [![Code Climate](https://codeclimate.com/github/AgentiaSystems/agentia-ping-handler/badges/gpa.svg)](https://codeclimate.com/github/AgentiaSystems/agentia-ping-handler)
 
 Express middleware to handle HTTP ping requests (GET and HEAD).

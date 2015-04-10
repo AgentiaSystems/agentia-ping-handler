@@ -1,58 +1,49 @@
 'use strict';
 
-var gulp = require('gulp'),
-	eslint = require('gulp-eslint'),
-	mocha = require('gulp-mocha'),
-	coverage = require('gulp-coverage'),
-	del = require('del');
- 
-var paths = {
-	'all': [
-		'./gulpfile.js',
+var gulp = require('gulp');
+var mocha = require('gulp-mocha');
+var istanbul = require('gulp-istanbul');
+var eslint = require('gulp-eslint');
+
+var files = {
+  src: [
 		'./index.js',
 		'./lib/**/*.js'
 	],
-	'src': [
-		'./index.js',
-		'./lib/**/*.js'
-	],
-	'tests': [ './test/**/*.test.js' ]
+  test: [
+		'./test/**/*.spec.js'
+	]
 };
 
-gulp.task('clean', function (cb) {
-  del([
-    '.coverage',
-    '.coverdata',
-    'coverage',
-    '.coverrun',
-    'coverage.html'
-  ], cb);
-});
-
 gulp.task('lint', function () {
-	return gulp.src(paths.all)
-		.pipe(eslint())
-		.pipe(eslint.format())
-		.pipe(eslint.failOnError());
+  return gulp.src(files.src.concat(files.test))
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failOnError());
 });
 
-// gulp for running the mocha tests with default dot reporter
-gulp.task('test', function(){
-	gulp
-		.src(paths.tests)
-		.pipe(mocha({reporter: 'dot'}));
+gulp.task('test', function () {
+  return gulp.src(files.test, {read: false})
+    .pipe(mocha({reporter: 'dot'}));
 });
 
-// gulp for running the mocha tests with spec reporter
-gulp.task('spec', function(){
-	gulp
-		.src(paths.tests)
-		.pipe(coverage.instrument({
-			pattern: paths.src,
-			debugDirectory: '.coverage'
-		}))
-		.pipe(mocha({reporter: 'spec'}))
-		.pipe(coverage.report({outFile: 'coverage.html'}));
+gulp.task('spec', function () {
+  return gulp.src(files.test, {read: false})
+    .pipe(mocha({reporter: 'spec'}));
 });
 
-gulp.task('default', ['lint', 'spec']);
+gulp.task('coverage', function (done) {
+  gulp.src(files.src)
+    .pipe(istanbul())
+    .pipe(istanbul.hookRequire())
+    .on('finish', function () {
+      gulp.src(files.test)
+        .pipe(mocha({reporter: 'dot'}))
+        .pipe(istanbul.writeReports({
+          dir: './coverage',
+          reporters: ['lcov', 'json', 'html'],
+          reportOpts: { dir: './coverage' }
+        }))
+        .on('end', done);
+    });
+});
