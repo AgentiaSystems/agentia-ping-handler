@@ -51,7 +51,7 @@ keystone.app.use(pingHandler.middleware());
 ## Configuration Options
 By default, agentia-ping-handler intercepts `HEAD` and `GET` requests to `/ping`. However, agentia-ping-handler offers allows you to set customize any of these defaults. The options can be configured using any of the following methods:
 
-* using the `.config()` method 
+* using the `.config()` method
 * using the `.set()` method
 
 ## API
@@ -85,19 +85,6 @@ Returns the middleware to be passed to Express using `.use()`.
 ```js
 app.use(pingHandler.middleware());
 ```
-
-## Technologies
-Technologies used in the development of **agentia-ping-handler**.
-
-* [lodash](http://lodash.com)
-* [gulp.js](http://gulpjs.com/)
-* [Mocha](http://visionmedia.github.io/mocha/)
-* [Chai](http://chaijs.com/)
-* [Sinon.js](http://sinonjs.org/)
-* [istanbul](https://gotwarlost.github.io/istanbul/)
-* [coveralls](https://coveralls.io)
-* [ESLint](http://eslint.org)
-
 
 ## License
 Agentia Ping Handler is free and open source under the MIT License.
