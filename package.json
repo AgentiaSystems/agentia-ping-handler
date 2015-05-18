@@ -35,5 +35,8 @@
     "sinon": "^1.14.1",
     "sinon-chai": "^2.6.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "depd": "^1.0.1",
+    "extend": "^2.0.1"
+  }
 }
