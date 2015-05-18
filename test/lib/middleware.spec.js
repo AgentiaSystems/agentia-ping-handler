@@ -1,113 +1,117 @@
-var chai = require('chai'),
-	expect = chai.expect,
-	sinon = require('sinon'),
-	sinonChai = require('sinon-chai'),
-	httpMocks = require('node-mocks-http'),
-	pingHandler = require('../../'),
-	middleware = pingHandler.middleware(),
-	req, res, next;
+'use strict';
+
+var chai = require('chai');
+var expect = chai.expect;
+var sinon = require('sinon');
+var sinonChai = require('sinon-chai');
+var httpMocks = require('node-mocks-http');
+var PingHandler = require('../../');
 
 chai.use(sinonChai);
 
 describe('.middleware()', function () {
 	before(function() {
-		next = sinon.stub();
+		this.handler = new PingHandler();
+		this.middleware = this.handler.middleware();
+		this.next = sinon.stub();
 	});
 
 	beforeEach(function() {
-		res = httpMocks.createResponse();
+		this.res = httpMocks.createResponse();
 	});
 
 	afterEach(function() {
-		next.reset();
+		this.res = null;
+		this.next.reset();
 	});
 
 	describe('with default settings', function() {
 
 		it('should return 200/OK when GET /ping', function() {
-			req  = httpMocks.createRequest({
+			var req = httpMocks.createRequest({
 				method: 'GET',
 				url: '/ping'
 			});
 
-			middleware(req, res, next);
-			expect(res._getStatusCode()).to.equal(200);
-			expect(res._getData()).to.equal('OK');
-			expect(res._isEndCalled()).to.be.false;
-			expect(next).not.to.have.been.called;
+			this.middleware(req, this.res, this.next);
+			expect(this.res._getStatusCode()).to.equal(200);
+			expect(this.res._getData()).to.equal('OK');
+			expect(this.res._isEndCalled()).to.be.false;
+			expect(this.next).not.to.have.been.called;
 		});
 
 		it('should return 200/OK when HEAD /ping', function() {
-			req  = httpMocks.createRequest({
+			var req = httpMocks.createRequest({
 				method: 'HEAD',
 				url: '/ping'
 			});
 
-			middleware(req, res, next);
-			expect(res._getStatusCode()).to.equal(200);
-			expect(res._getData()).to.equal('');
-			expect(res._isEndCalled()).to.be.true;
-			expect(next).not.to.have.been.called;
+			this.middleware(req, this.res, this.next);
+			expect(this.res._getStatusCode()).to.equal(200);
+			expect(this.res._getData()).to.equal('');
+			expect(this.res._isEndCalled()).to.be.true;
+			expect(this.next).not.to.have.been.called;
 		});
 
 		it('should call next() when POST /ping', function() {
-			req  = httpMocks.createRequest({
+			var req = httpMocks.createRequest({
 				method: 'POST',
 				url: '/ping'
 			});
 
-			middleware(req, res, next);
-			expect(next).to.be.called.once;
-			expect(res._isEndCalled()).to.be.false;
+			this.middleware(req, this.res, this.next);
+			expect(this.next).to.be.called.once;
+			expect(this.res._isEndCalled()).to.be.false;
 		});
 
 		it('should call next() when GET /invalid', function() {
-			req  = httpMocks.createRequest({
+			var req = httpMocks.createRequest({
 				method: 'GET',
 				url: '/invalid'
 			});
 
-			middleware(req, res, next);
-			expect(next).to.be.called.once;
-			expect(res._isEndCalled()).to.be.false;
+			this.middleware(req, this.res, this.next);
+			expect(this.next).to.be.called.once;
+			expect(this.res._isEndCalled()).to.be.false;
 		});
 
 		it('should call next() when HEAD /invalid', function() {
-			req  = httpMocks.createRequest({
+			var req = httpMocks.createRequest({
 				method: 'HEAD',
 				url: '/invalid'
 			});
 
-			middleware(req, res, next);
-			expect(next).to.be.called.once;
-			expect(res._isEndCalled()).to.be.false;
+			this.middleware(req, this.res, this.next);
+			expect(this.next).to.be.called.once;
+			expect(this.res._isEndCalled()).to.be.false;
 		});
 
 	});
 
 	describe('with custom settings', function() {
-		var payload = { 'key': 'value' },
-			path = '/this/is/a/test';
 
 		it('should return 200/custom JSON payload', function() {
+			var payload = { 'key': 'value' };
+			var path = '/this/is/a/test';
 			var data;
-			req  = httpMocks.createRequest({
+			var req = httpMocks.createRequest({
 				method: 'GET',
 				url: path
 			});
 
-			pingHandler.config({
+			this.handler.config({
 				path: path,
 				payload: payload
 			});
-			middleware(req, res, next);
-			data = JSON.parse(res._getData());
+			this.middleware = this.handler.middleware();
+			this.middleware(req, this.res, this.next);
+			data = JSON.parse(this.res._getData());
 
 			expect(data.key).to.equal(payload.key);
-			expect(res._getStatusCode()).to.equal(200);
-			expect(res._isJSON()).to.be.true;
-			expect(res._isEndCalled()).to.be.false;
-			expect(next).not.to.have.been.called;
+			expect(this.res._getStatusCode()).to.equal(200);
+			expect(this.res._isJSON()).to.be.true;
+			expect(this.res._isEndCalled()).to.be.false;
+			expect(this.next).not.to.have.been.called;
 
 		});
 

@@ -1,61 +1,63 @@
-var chai = require('chai'),
-	expect = chai.expect,
-	sinon = require('sinon'),
-	sinonChai = require('sinon-chai'),
-	pingHandler = require('../../');
+'use strict';
 
-chai.use(sinonChai);
+var chai = require('chai');
+var expect = chai.expect;
+var PingHandler = require('../../');
 
 describe('.set()/.get()', function () {
+
+	before(function() {
+		this.handler = new PingHandler();
+	});
 
 	describe('with invalid arguments', function () {
 
 		it('should error when called with no arguments', function() {
 			expect(function() {
-				pingHandler.set();
-			}).to.throw('Invalid number of arguments.');
+				this.handler.set();
+			}.bind(this)).to.throw('Invalid number of arguments.');
 		});
 
 		it('should error when called with invalid option', function() {
 			var key = 'invalid';
 			expect(function() {
-				pingHandler.set(key, 'value');
-			}).to.throw('Invalid configuration settings. "' + key + '" is not a valid setting option.');
+				this.handler.set(key, 'value');
+			}.bind(this)).to.throw('Invalid configuration settings. "' + key + '" is not a valid setting option.');
 		});
 
 		it('should error when not setting "path" to a string', function() {
 			var key = 'path';
 			expect(function() {
-				pingHandler.set(key, false);
-			}).to.throw('Invalid configuration settings. "' + key + '" must be a string.');
+				this.handler.set(key, false);
+			}.bind(this)).to.throw('Invalid configuration settings. "' + key + '" must be a string.');
 		});
 
 		it('should error when not setting "methods" to a string/array of strings', function() {
 			var key = 'methods';
 
 			expect(function() {
-				pingHandler.set(key, false);
-			}).to.throw('Invalid configuration settings. "' + key + '" must be a string or an array of strings.');
+				this.handler.set(key, false);
+			}.bind(this)).to.throw('Invalid configuration settings. "' + key + '" must be a string or an array of strings.');
 
 			expect(function() {
-				pingHandler.set(key, 999);
-			}).to.throw('Invalid configuration settings. "' + key + '" must be a string or an array of strings.');
+				this.handler.set(key, 999);
+			}.bind(this)).to.throw('Invalid configuration settings. "' + key + '" must be a string or an array of strings.');
 
 			expect(function() {
-				pingHandler.set(key, {'invalid': 'value'});
-			}).to.throw('Invalid configuration settings. "' + key + '" must be a string or an array of strings.');
+				this.handler.set(key, {'invalid': 'value'});
+			}.bind(this)).to.throw('Invalid configuration settings. "' + key + '" must be a string or an array of strings.');
 		});
 
 		it('should error when not setting "payload" to a string/object', function() {
 			var key = 'payload';
 
 			expect(function() {
-				pingHandler.set(key, false);
-			}).to.throw('Invalid configuration settings. "' + key + '" must be a string or an object.');
+				this.handler.set(key, false);
+			}.bind(this)).to.throw('Invalid configuration settings. "' + key + '" must be a string or an object.');
 
 			expect(function() {
-				pingHandler.set(key, 999);
-			}).to.throw('Invalid configuration settings. "' + key + '" must be a string or an object.');
+				this.handler.set(key, 999);
+			}.bind(this)).to.throw('Invalid configuration settings. "' + key + '" must be a string or an object.');
 		});
 
 	});
@@ -65,17 +67,17 @@ describe('.set()/.get()', function () {
 		it('should set "path"', function () {
 			var option = 'path',
 				value = '/valid/path';
-			pingHandler.set(option, value);
-			expect(pingHandler.get(option)).to.be.an('string');
-			expect(pingHandler.get(option)).to.equal(value);
+			this.handler.set(option, value);
+			expect(this.handler.get(option)).to.be.an('string');
+			expect(this.handler.get(option)).to.equal(value);
 		});
 
 		it('should set "methods" (string)', function () {
 			var option = 'methods',
 				setValue = 'GET';
-			pingHandler.set(option, setValue);
+			this.handler.set(option, setValue);
 
-			var getValue = pingHandler.get(option);
+			var getValue = this.handler.get(option);
 			expect(getValue).to.be.an('array');
 			expect(getValue.length).to.equal(1);
 			expect(getValue[0]).to.equal(setValue);
@@ -84,9 +86,9 @@ describe('.set()/.get()', function () {
 		it('should set "methods" (string array)', function () {
 			var option = 'methods',
 				setValue = ['GET', 'HEAD'];
-			pingHandler.set(option, setValue);
+			this.handler.set(option, setValue);
 
-			var getValue = pingHandler.get(option);
+			var getValue = this.handler.get(option);
 			expect(getValue).to.be.an('array');
 			expect(getValue.length).to.equal(2);
 			expect(getValue[0]).to.equal(setValue[0]);
@@ -96,17 +98,17 @@ describe('.set()/.get()', function () {
 		it('should set "payload" (string)', function () {
 			var option = 'payload',
 				value = 'VALID RESPONSE';
-			pingHandler.set(option, value);
-			expect(pingHandler.get(option)).to.be.an('string');
-			expect(pingHandler.get(option)).to.equal(value);
+			this.handler.set(option, value);
+			expect(this.handler.get(option)).to.be.an('string');
+			expect(this.handler.get(option)).to.equal(value);
 		});
 
 		it('should set "payload" (object)', function () {
 			var option = 'payload',
 				value = {'option': 'valid'};
-			pingHandler.set(option, value);
-			expect(pingHandler.get(option)).to.be.an('object');
-			expect(pingHandler.get(option)).to.deep.equal(value);
+			this.handler.set(option, value);
+			expect(this.handler.get(option)).to.be.an('object');
+			expect(this.handler.get(option)).to.deep.equal(value);
 		});
 
 	});
