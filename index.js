@@ -1,1 +1,3 @@
-module.exports = require('./lib/pingHandler')();
+'use strict';
+
+module.exports = require('./lib/ping-handler');
