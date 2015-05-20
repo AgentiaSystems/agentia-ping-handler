@@ -1,13 +1,16 @@
-# Agentia Ping Handler
+![agentia-ping-handler logo][logo-url]
+---
+[![NPM version][npm-badge]][npm-url]
 
-## v0.1.1 / 2015-03-01
+# Release 1.1.0
+- Simplify interface
+- Deprecate constructor, `PingHandler()` now returns middleware
+- Deprecate `.set()` and `.config()`, configuration should be passed directly to `PingHandler()`
+- Deprecate `.middleware()`, `PingHandler()` now returns middleware
 
-* added coveralls config
-* added coveralls badge
-* added travis-ce badge 
+# Release 1.0.0
+- Initial release
 
-## v0.1.0 / 2015-03-01
-
-* handle GET and HEAD requests
-* custom GET response payload
-* custom path
+[logo-url]: media/logo.png
+[npm-badge]: https://badge.fury.io/js/agentia-ping-handler.png
+[npm-url]: https://www.npmjs.com/package/agentia-ping-handler

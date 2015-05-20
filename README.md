@@ -21,7 +21,7 @@ npm install --save agentia-ping-handler
 
 ## Usage
 ```js
-pingHandler({options}).middleware()
+app.use(pingHandler({options}))
 ```
 
 ### Express
@@ -32,7 +32,7 @@ var pingHandler = require('agentia-ping-handler');
 
 var app = express();
 
-app.use(pingHandler.middleware());
+app.use(pingHandler());
 ```
 
 ### KeystoneJS
@@ -47,46 +47,38 @@ keystone.init({
 	...
 });
 
-keystone.app.use(pingHandler.middleware());
+keystone.app.use(pingHandler());
 ```
 
 ## Configuration Options
-By default, agentia-ping-handler intercepts `HEAD` and `GET` requests to `/ping`. However, agentia-ping-handler offers allows you to set customize any of these defaults. The options can be configured using any of the following methods:
+By default, agentia-ping-handler intercepts `HEAD` and `GET` requests to `/ping`. However, agentia-ping-handler offers allows you to set customize any of these defaults. The options can be configured by passing confuration obbject to the `pingHandler()` middleware function.
 
-* using the `.config()` method
-* using the `.set()` method
 
-## API
-
-### Using .set()
 ```js
-pingHandler.set('option', 'value');
+app.use(pingHandler({
+  methods: 'GET'
+  path: '/ping',
+  payload: 'OK'
+}));
 ```
 
-Allows you to configure individual options settings. Available configuration options include:
+Available configuration options include:
 
 Option | Type | Description | Default Value
---- | --- | --- | ---
+------ | ---- | ----------- | -------------
 methods | String<br>Array | HTTP methods to be processed (currently only `GET` and `HEAD` are supported) | `['GET', 'HEAD']`
 path | String | path/route to be processed | `'/ping'`
 payload | String<br>Object | data sent in response to GET requests | `'OK'`
 
-### .config()
-Allows you to set multiple configuration options in a single call. Set `.set()` above for a list of the available configuration options.
 
-```js
-pingHandler.config({
-  'option1': 'value1'
-  'option2': 'value2'
-});
-```
+## Deprecated methods
+The following methods are deprecated and will be removed in future versions of **agentia-ping-handler**.
 
-### .middleware()
-Returns the middleware to be passed to Express using `.use()`.
-
-```js
-app.use(pingHandler.middleware());
-```
+Method | Deprecation Version | Removal Version
+------ | :-------------------: | :------------------------:
+`.set()` | `1.1.0` | `2.0.0`
+`.config()` | `1.1.0` | `2.0.0`
+`.middleware()` | `1.1.0` | `2.0.0`
 
 ## License
 Agentia Ping Handler is free and open source under the MIT License.

@@ -1,6 +1,6 @@
 {
   "name": "agentia-ping-handler",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Express Middleware to handle HTTP pings",
   "main": "index.js",
   "scripts": {
