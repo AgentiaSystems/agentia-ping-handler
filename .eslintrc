@@ -1,91 +1,93 @@
-{
-    "env": {
-        "node": true,
-        "mocha": true
-    },
+env:
+  node: true
 
-    "rules": {
-        "no-alert": 2,
-        "no-array-constructor": 2,
-        "no-caller": 2,
-        "no-bitwise": 0,
-        "no-catch-shadow": 2,
-        "no-console": 0,
-        "no-comma-dangle": 2,
-        "no-control-regex": 2,
-        "no-debugger": 2,
-        "no-div-regex": 2,
-        "no-dupe-keys": 2,
-        "no-else-return": 2,
-        "no-empty": 2,
-        "no-empty-class": 2,
-        "no-eq-null": 2,
-        "no-eval": 2,
-        "no-ex-assign": 2,
-        "no-func-assign": 0,
-        "no-floating-decimal": 2,
-        "no-implied-eval": 2,
-        "no-with": 2,
-        "no-fallthrough": 2,
-        "no-unreachable": 2,
-        "no-undef": 2,
-        "no-undef-init": 2,
-        "no-unused-expressions": 0,
-        "no-octal": 2,
-        "no-octal-escape": 2,
-        "no-obj-calls": 2,
-        "no-multi-str": 2,
-        "no-new-wrappers": 2,
-        "no-new": 2,
-        "no-new-func": 2,
-        "no-native-reassign": 2,
-        "no-plusplus": 0,
-        "no-delete-var": 2,
-        "no-return-assign": 2,
-        "no-new-object": 2,
-        "no-label-var": 2,
-        "no-ternary": 0,
-        "no-self-compare": 2,
-        "no-sync": 2,
-        "no-underscore-dangle": 0,
-        "no-loop-func": 2,
-        "no-empty-label": 2,
-        "no-unused-vars": 1,
-        "no-script-url": 2,
-        "no-proto": 2,
-        "no-iterator": 2,
-        "no-mixed-requires": [0, false],
-        "no-wrap-func": 2,
-        "no-shadow": 2,
-        "no-use-before-define": 0,
-        "no-redeclare": 2,
-        "no-regex-spaces": 2,
+# enable ECMAScript features
+ecmaFeatures:
+  blockBindings: true
+  templateStrings: true
+  octalLiterals: true
+  binaryLiterals: true
+  generators: true
 
-        "brace-style": 0,
-        "block-scoped-var": 0,
-        "camelcase": 0,
-        "complexity": [0, 11],
-        "consistent-this": [0, "that"],
-        "curly": 2,
-        "dot-notation": 2,
-        "eqeqeq": 2,
-        "guard-for-in": 0,
-        "max-depth": [0, 4],
-        "max-len": [0, 80, 4],
-        "max-params": [0, 3],
-        "max-statements": [0, 10],
-        "new-cap": 2,
-        "new-parens": 2,
-        "one-var": 0,
-        "quotes": [2, "single"],
-        "quote-props": 0,
-        "radix": 0,
-        "semi": 2,
-        "strict": 2,
-        "unnecessary-strict": 0,
-        "use-isnan": 2,
-        "valid-typeof": 0,
-        "wrap-iife": 2,
-        "wrap-regex": 0
-    }
-}
+rules:
+  # Possible Errors
+  # list: https://github.com/eslint/eslint/tree/master/docs/rules#possible-errors
+  ## check debugger sentence
+  no-debugger: 2
+  ## check duplicate arguments
+  no-dupe-args: 2
+  ## check duplicate object keys
+  no-dupe-keys: 2
+  ## check duplicate switch-case
+  no-duplicate-case: 2
+  ## disallow assignment of exceptional params
+  no-ex-assign: 2
+  ## disallow use of reserved words as keys like enum, class
+  no-reserved-keys: 2
+  ## disallow unreachable code
+  no-unreachable: 2
+  ## require valid typeof compared string like typeof foo === 'strnig'
+  valid-typeof: 2
+
+  # Best Practices
+  # list: https://github.com/eslint/eslint/tree/master/docs/rules#best-practices
+  ## require falls through comment on switch-case
+  no-fallthrough: 2
+
+  # Stylistic Issues
+  # list: https://github.com/eslint/eslint/tree/master/docs/rules#stylistic-issues
+  ## use single quote, we can use double quote when escape chars
+  quotes:
+    - 2
+    - "single"
+    - "avoid-escape"
+  ## 2 space indentation
+  indent:
+    - 2
+    - 2
+  ## add space after comma
+  ## set to 'warn' because of https://github.com/eslint/eslint/issues/2408
+  comma-spacing: 1
+  ## put semi-colon
+  semi: 2
+  ## require spaces operator like var sum = 1 + 1;
+  space-infix-ops: 2
+  ## require spaces return, throw, case
+  space-return-throw-case: 2
+  ## require parens for Constructor
+  new-parens: 2
+  ## max 80 length
+  max-len:
+    - 2
+    - 80
+    - 2
+  ## use dangle for private entities
+  no-underscore-dangle: 0
+
+  # Strict Mode
+  # list: https://github.com/eslint/eslint/tree/master/docs/rules#strict-mode
+  ## 'use strict' on top
+  strict:
+    - 2
+    - "global"
+
+# Global scoped method and vars
+globals:
+  DTRACE_HTTP_CLIENT_REQUEST: true
+  LTTNG_HTTP_CLIENT_REQUEST: true
+  COUNTER_HTTP_CLIENT_REQUEST: true
+  DTRACE_HTTP_CLIENT_RESPONSE: true
+  LTTNG_HTTP_CLIENT_RESPONSE: true
+  COUNTER_HTTP_CLIENT_RESPONSE: true
+  DTRACE_HTTP_SERVER_REQUEST: true
+  LTTNG_HTTP_SERVER_REQUEST: true
+  COUNTER_HTTP_SERVER_REQUEST: true
+  DTRACE_HTTP_SERVER_RESPONSE: true
+  LTTNG_HTTP_SERVER_RESPONSE: true
+  COUNTER_HTTP_SERVER_RESPONSE: true
+  DTRACE_NET_STREAM_END: true
+  LTTNG_NET_STREAM_END: true
+  COUNTER_NET_SERVER_CONNECTION_CLOSE: true
+  DTRACE_NET_SERVER_CONNECTION: true
+  LTTNG_NET_SERVER_CONNECTION: true
+  COUNTER_NET_SERVER_CONNECTION: true
