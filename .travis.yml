@@ -11,13 +11,15 @@ addons:
   code_climate:
     repo_token: c1385266a528ef3d1a6937788aacfb0d067e32c2b40e56e3095392e225877fc2
 
-before_script:
-  - npm install -g gulp
+before_install:
+  - npm install -g eslint
   - npm install -g codeclimate-test-reporter
-  - gulp lint
+
+before_script:
+  - npm run lint
 
 after_script:
-  - gulp coverage
+  - npm run cover
   - codeclimate < ./coverage/lcov.info
 
 branches:
