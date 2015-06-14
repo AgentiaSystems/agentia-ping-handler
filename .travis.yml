@@ -19,3 +19,7 @@ before_script:
 after_script:
   - gulp coverage
   - codeclimate < ./coverage/lcov.info
+
+branches:
+  only:
+    - master
