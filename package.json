@@ -37,7 +37,7 @@
     "node-mocks-http": "^1.4.2",
     "pre-commit": "^1.0.10",
     "sinon": "^1.14.1",
-    "sinon-chai": "^2.6.0"
+    "sinon-chai": "^2.8.0"
   },
   "dependencies": {
     "depd": "^1.0.1",
